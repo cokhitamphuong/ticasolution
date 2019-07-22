@@ -1,0 +1,36 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  web:
+    tty: true
+    stdin_open: true
+    container_name: web
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - "2727:2727"
+    volumes:
+      - .:/var/www
+    working_dir: /var/www
+
+    environment:
+      RAILS_ENV: development
+      RACK_ENV: development
+      RAILS_MAX_THREADS: 8
+      WEB_CONCURRENCY: 4
+      PORT: 2727
+    links:
+      - db
+    depends_on:
+      - db
+    command: sh ./rails_start.sh
+
+volumes:
+  logvolume01: {}
