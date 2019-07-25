@@ -3,12 +3,12 @@ set :stage,     :production
 set :rails_env, :production
 set :branch,    :master
 
-server "34.66.75.239", port: "22", user: "deployer", roles: [:web, :app, :db], primary: true
+server "34.67.93.31", port: "22", user: "deployer", roles: [:web, :app, :db], primary: true
 
 # Change these
-set :repo_url,                "git@github.com:tanngoc93/demo-test.git"
+set :repo_url,                "git@github.com:cokhitamphuong/ticasolution.git"
 set :user,                    "deployer"
-set :application,             "demo-test"
+set :application,             "ticasolution"
 set :deploy_to,               "/var/www/#{fetch(:application)}"
 
 # Don"t change these unless you know what you"re doing
